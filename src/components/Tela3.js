@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HeadHorario } from "./Tela2";
 
-export default function Tela3({id2}) {
+export default function Tela3({id2, nome, setNome, cpf, setCpf}) {
 
     const [items, setItems] = useState([]);
 
@@ -19,14 +19,34 @@ export default function Tela3({id2}) {
 
 
     return(
-        <>
+        <Meio>
+
             <HeadHorario>
                 <p>Selecione o(s) assento(s)</p>
             </HeadHorario>
+
             <Assentos>
                 {items.map((f) => <Assento data={f}/>)}
             </Assentos>
-        </>
+
+            <Organizador>
+            <Exemplo><Selected/>Selecionado</Exemplo>
+            <Exemplo><Disp/>Disponível</Exemplo>
+            <Exemplo><Ndisp/>Indisponível</Exemplo>
+            </Organizador>
+
+            <Dados>
+            Nome do comprador:
+            <Input placeholder="Digite seu nome..." type='text' value={nome} onChange={e => setNome(e.target.value)}></Input>
+            CPF do comprador:
+            <Input placeholder="Digite seu CPF..." type='text' value={cpf} onChange={e => setCpf(e.target.value)}></Input>
+            </Dados>
+
+            <Link to={"/sucesso"}>
+                <BotaoReserva>Reservar Assento(s)</BotaoReserva>
+            </Link>
+
+        </Meio>
     )
 
 }
@@ -46,7 +66,6 @@ function Assento(props) {
     }
 
 }
-
 
 let listaAssentos = []
 
@@ -68,6 +87,81 @@ function select(props, setSeletor) {
     }
 
 }
+
+const Meio = styled.div`
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+`
+
+const BotaoReserva = styled.button`
+
+    margin-top: 57px;
+    margin-bottom: 140px;
+    width: 225px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e8833a;
+    border-radius: 3px;
+    color: #ffffff;
+    border: 0px solid;
+
+`
+
+const Input = styled.input`
+
+    width: 327px;
+    height: 51px;
+    border-radius: 3px;
+    border: 1px solid #d5d5d5;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 18px;
+    margin-top: 3px;
+    margin-bottom: 7px;
+
+    &::placeholder {
+        color: #afafaf;
+        font-style: italic;
+    }
+
+`
+
+const Dados = styled.div`
+
+    margin-top: 41px;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    color: #293845;
+
+`
+
+const Organizador = styled.div`
+
+    display: flex;
+    margin-top: 42px;
+    justify-content: center;
+
+
+`
+
+const Exemplo = styled.div`
+
+    width: 91px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: #4E5A65;
+;
+
+`
 
 const Selected = styled.button`
     height: 26px;
@@ -92,6 +186,7 @@ const Assentos = styled.div`
     gap: 18px 7px;
 
 `
+
 const Disp = styled.button`
 
     

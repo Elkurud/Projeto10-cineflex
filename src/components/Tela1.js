@@ -3,10 +3,10 @@ import styled from "styled-components";
 import List from "./List";
 
 
-export default function Tela1({setId1, setImg}) {
+export default function Tela1({setId1, setId3, setImg, setNomeFilme}) {
   return (
     <Container>
-      <List setId1 = {setId1} setImg = {setImg} />
+      <List setId1 = {setId1} setId3 = {setId3} setImg = {setImg} setNomeFilme = {setNomeFilme} />
     </Container>
   );
 }

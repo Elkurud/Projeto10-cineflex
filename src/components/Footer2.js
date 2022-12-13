@@ -2,8 +2,25 @@ import styled from "styled-components";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-export default function Footer({id3, img, nomeFilme, sessao}) {
+export default function Footer2({id3, img, nomeFilme, sessao}) {
 
+    const [items, setItems] = useState([]);
+    let variavel
+
+    useEffect(() => {
+
+        
+            const request = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${sessao}/seats`);
+
+            request.then(resposta => {
+                setItems(resposta.data);
+            })
+    }, []);
+
+    
+
+    if(items.day.weekday == undefined){
+        variavel = "erro"}
 
     return (
 
@@ -12,7 +29,8 @@ export default function Footer({id3, img, nomeFilme, sessao}) {
                 <img src={img}/>
             </Container2>
             <Textos>
-                {nomeFilme}
+                {nomeFilme}<br/>
+                {variavel}
             </Textos>
         </Container>
 
@@ -58,9 +76,8 @@ const Container2 = styled.div`
     justify-content: center;
     align-items: center;
 
-    & img {
+    img {
         height: 72px;
         width: 48px;
     }
-
 `

@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Tela2({id1, id2, setId2}) {
+export default function Tela2({id1, id2, setId2, setSessao}) {
 
     const [items, setItems] = useState([]);
 
@@ -26,7 +26,7 @@ export default function Tela2({id1, id2, setId2}) {
                 <Horario>
                     <p>{item.weekday} - {item.date}</p>
                      {item.showtimes.map(item => 
-                        <Link onClick={() => {setId2(item.id)}} to={`/assentos/${item.id}`}><BotaoHorario>{item.name}</BotaoHorario></Link>
+                        <Link onClick={() => {setId2(item.id); setSessao(item.id)}} to={`/assentos/${item.id}`}><BotaoHorario>{item.name}</BotaoHorario></Link>
                         )}
                 </Horario>)}
         </Container>
