@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
-export default function List({setId}) {
+export default function List({setId1, setImg}) {
 
     const [items, setItems] = useState([]);
 
@@ -24,7 +24,7 @@ export default function List({setId}) {
             </HeadFIlme>
             {items.map(item => 
                 <Filme>
-                    <Link onClick={setId(item.id)} to={`/sessoes/${item.id}`}>
+                    <Link onClick={() => {setId1(item.id); setImg(item.posterURL)}} to={`/sessoes/${item.id}`}>
                         <img src={item.posterURL}/>
                     </Link>
                 </Filme>)}

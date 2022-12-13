@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: #e5e5e5;
+        background-color: #ffffff;
         font-family: 'Roboto';
     }
     ol, ul {
