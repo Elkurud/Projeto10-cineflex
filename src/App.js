@@ -23,6 +23,8 @@ function App() {
   const [nomeFilme, setNomeFilme] = React.useState("")
   const [sessao, setSessao] = React.useState("")
 
+  const [seatsList, setSeatsList] = React.useState([])
+
   const [nome, setNome] = React.useState("")
   const [cpf, setCpf] = React.useState("")
 
@@ -34,8 +36,8 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Tela1 setId1 = {setId1} setId3 = {setId3} setImg = {setImg} setNomeFilme = {setNomeFilme} />} />
         <Route path="/sessoes/:idFilme" element={<><Tela2 id1 = {id1} id2 = {id2} setId2 = {setId2} setSessao = {setSessao} /><Footer id3 = {id3} img = {img} nomeFilme = {nomeFilme} /></>}/>
-        <Route path="/assentos/:idSessao" element={<><Tela3 id2 = {id2} nome = {nome} setNome = {setNome} cpf = {cpf} setCpf = {setCpf} /><Footer id3 = {id3} img = {img} nomeFilme = {nomeFilme} /></>}/>
-        <Route path="/sucesso" element={<Sucesso/>} /> 
+        <Route path="/assentos/:idSessao" element={<><Tela3 seatsList = {seatsList} setSeatsList = {setSeatsList} id2 = {id2} nome = {nome} setNome = {setNome} cpf = {cpf} setCpf = {setCpf} /><Footer2 id3 = {id3} img = {img} nomeFilme = {nomeFilme} sessao = {sessao} /></>}/>
+        <Route path="/sucesso" element={<Sucesso nome = {nome} cpf = {cpf} seatsList = {seatsList} setSeatsList = {setSeatsList} sessao = {sessao} />} /> 
 			</Routes>
 		</BrowserRouter>
 

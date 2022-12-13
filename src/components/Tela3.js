@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HeadHorario } from "./Tela2";
 
-export default function Tela3({id2, nome, setNome, cpf, setCpf}) {
+export default function Tela3({setSeatsList, id2, nome, setNome, cpf, setCpf}) {
 
     const [items, setItems] = useState([]);
 
@@ -14,6 +14,7 @@ export default function Tela3({id2, nome, setNome, cpf, setCpf}) {
 
         request.then(resposta => {
             setItems(resposta.data.seats);
+            
         })
     }, []);
 
@@ -42,7 +43,7 @@ export default function Tela3({id2, nome, setNome, cpf, setCpf}) {
             <Input placeholder="Digite seu CPF..." type='text' value={cpf} onChange={e => setCpf(e.target.value)}></Input>
             </Dados>
 
-            <Link to={"/sucesso"}>
+            <Link onClick={() => setSeatsList(listaAssentos)} to={"/sucesso"}>
                 <BotaoReserva>Reservar Assento(s)</BotaoReserva>
             </Link>
 
@@ -76,13 +77,15 @@ function select(props, setSeletor) {
         let index = listaAssentos.indexOf(props.data.name);
         listaAssentos.splice(index, 1);
         listaAssentos.sort(function(a, b){return a - b});
-        return(setSeletor(<Disp onClick={() => {select(props, setSeletor);}}>{props.data.name}</Disp>))
+        setSeletor(<Disp onClick={() => {select(props, setSeletor);}}>{props.data.name}</Disp>)
+        return(listaAssentos)
         
     }else{
 
         listaAssentos.push(props.data.name);
         listaAssentos.sort(function(a, b){return a - b});
-        return(setSeletor(<Selected onClick={() => {select(props, setSeletor);}}>{props.data.name}</Selected>))
+        setSeletor(<Selected onClick={() => {select(props, setSeletor);}}>{props.data.name}</Selected>)
+        return(listaAssentos)
 
     }
 

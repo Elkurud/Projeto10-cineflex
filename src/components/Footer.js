@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 export default function Footer({id3, img, nomeFilme, sessao}) {
 
 
+
     return (
 
         <Container>

@@ -4,23 +4,17 @@ import React, { useEffect, useState } from "react";
 
 export default function Footer2({id3, img, nomeFilme, sessao}) {
 
-    const [items, setItems] = useState([]);
-    let variavel
+    const [data, setData] = React.useState("")
 
     useEffect(() => {
 
         
             const request = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${sessao}/seats`);
 
-            request.then(resposta => {
-                setItems(resposta.data);
+            request.then((resposta) => {
+                setData(<h1>{resposta.data.day.weekday} - {resposta.data.name}</h1>)
             })
     }, []);
-
-    
-
-    if(items.day.weekday == undefined){
-        variavel = "erro"}
 
     return (
 
@@ -30,7 +24,7 @@ export default function Footer2({id3, img, nomeFilme, sessao}) {
             </Container2>
             <Textos>
                 {nomeFilme}<br/>
-                {variavel}
+                {data}
             </Textos>
         </Container>
 
@@ -48,6 +42,12 @@ const Textos = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+        h1{
+        font-size: 26px;
+        font-weight: 400;
+        color: #293845;
+        }
 
 `
 
