@@ -14,7 +14,7 @@ export default function Tela2({id1, id2, setId2, setSessao}) {
         request.then(resposta => {
             setItems(resposta.data.days);
         })
-    }, []);
+    }, [id1]);
 
     return(
 

@@ -16,7 +16,7 @@ export default function Sucesso({nome, cpf, seatsList, setSeatsList, sessao}){
         request.then((resposta) => {
             setFilme(resposta.data.movie.title)
             setData(`${resposta.data.day.weekday} ${resposta.data.day.date}`)
-            console.log(dadosFinal)
+            console.log(seatsList)
         })
 }, []);
 
@@ -38,7 +38,7 @@ export default function Sucesso({nome, cpf, seatsList, setSeatsList, sessao}){
                 <h2>CPF: {cpf}</h2>
             </Infos>
             <Link to={`/`}>
-                <Home onClick={() => axios.post('https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many', dadosFinal)}>Voltar pra Home</Home>
+                <Home>Voltar pra Home</Home>
             </Link>
         </>
     )

@@ -4,9 +4,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HeadHorario } from "./Tela2";
 
-export default function Tela3({setSeatsList, id2, nome, setNome, cpf, setCpf}) {
+export default function Tela3({setSeatsList, id2, nome, setNome, cpf, setCpf, seatsId, setSeatsId}) {
 
     const [items, setItems] = useState([]);
+    let dadosFinal = {
+        ids: seatsId,
+        name: nome,
+        cpf: cpf
+    }
 
     useEffect(() => {
 
@@ -16,7 +21,7 @@ export default function Tela3({setSeatsList, id2, nome, setNome, cpf, setCpf}) {
             setItems(resposta.data.seats);
             
         })
-    }, []);
+    }, [id2]);
 
 
     return(
@@ -43,7 +48,7 @@ export default function Tela3({setSeatsList, id2, nome, setNome, cpf, setCpf}) {
             <Input placeholder="Digite seu CPF..." type='text' value={cpf} onChange={e => setCpf(e.target.value)}></Input>
             </Dados>
 
-            <Link onClick={() => setSeatsList(listaAssentos)} to={"/sucesso"}>
+            <Link onClick={() => {setSeatsId(listaAssentos.ids); axios.post('https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many', dadosFinal); console.log(dadosFinal)}} to={"/sucesso"}>
                 <BotaoReserva>Reservar Assento(s)</BotaoReserva>
             </Link>
 
@@ -68,23 +73,36 @@ function Assento(props) {
 
 }
 
-let listaAssentos = []
+let listaAssentos = {
+
+    ids: [],
+    names: [],
+
+}
+
 
 function select(props, setSeletor) {
 
-    if(listaAssentos.includes(props.data.name)){
+    if(listaAssentos.names.includes(props.data.name)){
 
-        let index = listaAssentos.indexOf(props.data.name);
-        listaAssentos.splice(index, 1);
-        listaAssentos.sort(function(a, b){return a - b});
+        let index = listaAssentos.names.indexOf(props.data.name);
+        listaAssentos.names.splice(index, 1);
+        listaAssentos.names.sort(function(a, b){return a - b});
+        let index2 = listaAssentos.ids.indexOf(props.data.id);
+        listaAssentos.ids.splice(index2, 1);
+        listaAssentos.ids.sort(function(a, b){return a - b});
         setSeletor(<Disp onClick={() => {select(props, setSeletor);}}>{props.data.name}</Disp>)
+        console.log(listaAssentos.ids)
         return(listaAssentos)
         
     }else{
 
-        listaAssentos.push(props.data.name);
-        listaAssentos.sort(function(a, b){return a - b});
+        listaAssentos.names.push(props.data.name);
+        listaAssentos.names.sort(function(a, b){return a - b});
+        listaAssentos.ids.push(props.data.id);
+        listaAssentos.ids.sort(function(a, b){return a - b});
         setSeletor(<Selected onClick={() => {select(props, setSeletor);}}>{props.data.name}</Selected>)
+        console.log(listaAssentos.ids)
         return(listaAssentos)
 
     }
