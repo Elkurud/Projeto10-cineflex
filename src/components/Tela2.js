@@ -23,10 +23,10 @@ export default function Tela2({id1, id2, setId2, setSessao}) {
                 Selecione o horário
             </HeadHorario>
             {items.map(item => 
-                <Horario>
+                <Horario data-test="movie-day">
                     <p>{item.weekday} - {item.date}</p>
                      {item.showtimes.map(item => 
-                        <Link onClick={() => {setId2(item.id); setSessao(item.id)}} to={`/assentos/${item.id}`}><BotaoHorario>{item.name}</BotaoHorario></Link>
+                        <Link data-test="showtime" onClick={() => {setId2(item.id); setSessao(item.id)}} to={`/assentos/${item.id}`}><BotaoHorario>{item.name}</BotaoHorario></Link>
                         )}
                 </Horario>)}
         </Container>

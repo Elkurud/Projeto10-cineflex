@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function Footer({id3, img, nomeFilme, sessao}) {
 
@@ -8,9 +7,9 @@ export default function Footer({id3, img, nomeFilme, sessao}) {
 
     return (
 
-        <Container>
+        <Container data-test="footer">
             <Container2>
-                <img src={img}/>
+                <img src={img} alt=""/>
             </Container2>
             <Textos>
                 {nomeFilme}

@@ -23,9 +23,9 @@ export default function List({setId1, setId3, setImg, setNomeFilme}) {
                 Selecione o Filme
             </HeadFIlme>
             {items.map(item => 
-                <Filme>
+                <Filme data-test="movie">
                     <Link onClick={() => {setId1(item.id); setId3(item.id); setImg(item.posterURL); setNomeFilme(item.title)}} to={`/sessoes/${item.id}`}>
-                        <img src={item.posterURL}/>
+                        <img src={item.posterURL} alt="" />
                     </Link>
                 </Filme>)}
         </ListaFilmes>

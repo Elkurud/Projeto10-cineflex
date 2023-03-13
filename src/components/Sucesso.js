@@ -3,11 +3,10 @@ import axios from "axios"
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Sucesso({nome, cpf, seatsList, setSeatsList, sessao}){
+export default function Sucesso({nome, cpf, seatsList, setSeatsList, sessao, seatsId, setRefresh}){
 
     const [filme, setFilme] = React.useState("")
-    const [data, setData] = React.useState("")
-    let dadosFinal = {seatsList, nome, cpf}
+    const [data, setData] = useState("")
 
     useEffect(() => {
 
@@ -16,9 +15,8 @@ export default function Sucesso({nome, cpf, seatsList, setSeatsList, sessao}){
         request.then((resposta) => {
             setFilme(resposta.data.movie.title)
             setData(`${resposta.data.day.weekday} ${resposta.data.day.date}`)
-            console.log(seatsList)
         })
-}, []);
+});
 
     return(
         <>
@@ -37,7 +35,7 @@ export default function Sucesso({nome, cpf, seatsList, setSeatsList, sessao}){
                 <h2>Nome: {nome}</h2>
                 <h2>CPF: {cpf}</h2>
             </Infos>
-            <Link to={`/`}>
+            <Link to={`/`} data-test="go-home-btn" onClick={() => setRefresh(1)}>
                 <Home>Voltar pra Home</Home>
             </Link>
         </>

@@ -25,9 +25,15 @@ function App() {
 
   const [seatsList, setSeatsList] = React.useState([]);
   const [seatsId, setSeatsId] = React.useState([]);
+  const [refresh, setRefresh] = React.useState("")
 
   const [nome, setNome] = React.useState("");
   const [cpf, setCpf] = React.useState("");
+
+  if(refresh === 1){
+    setTimeout(() => {window.location.reload(false)}, 300)
+    
+  }
 
   return (
 
@@ -38,7 +44,7 @@ function App() {
 				<Route path="/" element={<Tela1 setId1 = {setId1} setId3 = {setId3} setImg = {setImg} setNomeFilme = {setNomeFilme} />} />
         <Route path="/sessoes/:idFilme" element={<><Tela2 id1 = {id1} id2 = {id2} setId2 = {setId2} setSessao = {setSessao} /><Footer id3 = {id3} img = {img} nomeFilme = {nomeFilme} /></>}/>
         <Route path="/assentos/:idSessao" element={<><Tela3 seatsList = {seatsList} setSeatsList = {setSeatsList} id2 = {id2} nome = {nome} setNome = {setNome} cpf = {cpf} setCpf = {setCpf} seatsId = {seatsId} setSeatsId = {setSeatsId} /><Footer2 id3 = {id3} img = {img} nomeFilme = {nomeFilme} sessao = {sessao} /></>}/>
-        <Route path="/sucesso" element={<Sucesso nome = {nome} cpf = {cpf} seatsList = {seatsList} setSeatsList = {setSeatsList} sessao = {sessao} />} /> 
+        <Route path="/sucesso" element={<Sucesso nome = {nome} cpf = {cpf} seatsList = {seatsList} setSeatsList = {setSeatsList} sessao = {sessao} seatsId = {seatsId} setRefresh = {setRefresh} />} /> 
 			</Routes>
 		</BrowserRouter>
 
