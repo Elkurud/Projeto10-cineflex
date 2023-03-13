@@ -31,7 +31,7 @@ function App() {
   const [cpf, setCpf] = React.useState("");
 
   if(refresh === 1){
-    setTimeout(() => {window.location.reload(false)}, 300)
+    setTimeout(() => {window.location.reload(false)}, 100)
     
   }
 

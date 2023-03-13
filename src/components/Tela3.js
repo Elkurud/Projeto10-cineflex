@@ -16,7 +16,7 @@ export default function Tela3({
 }) {
   const [items, setItems] = useState([]);
   let dadosFinal = {
-    ids: seatsId,
+    ids: listaAssentos.ids,
     name: nome,
     cpf: cpf,
   };
@@ -82,10 +82,7 @@ export default function Tela3({
             .post(
               "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",
               dadosFinal
-            )
-            .then(function (resp) {
-              console.log(resp.status);
-            });
+            );
             setSeatsList(listaAssentos.names)
         }}
         to={"/sucesso"}
@@ -110,7 +107,7 @@ function Assento(props) {
   if (props.data.isAvailable) {
     return <>{seletor}</>;
   } else {
-    return <Ndisp data-test="seat">{props.data.name}</Ndisp>;
+    return <Ndisp data-test="seat" onClick={() => alert("Esse assento não está disponível")} >{props.data.name}</Ndisp>;
   }
 }
 
